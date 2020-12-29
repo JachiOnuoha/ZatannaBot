@@ -1,0 +1,26 @@
+
+import string
+from Socket import sendMessage
+from Settings import ENTRANCE, IDENT, CHANNEL
+import sys
+
+
+def joinRoom(s):
+    readbuffer_join = ""
+    Loading = True
+    while Loading:
+        try:
+            readbuffer_join = readbuffer_join + s.recv(1024).decode("UTF-8")
+            temp = readbuffer_join.split("\n")
+            readbuffer_join = temp.pop()
+
+            for line in temp:
+                print(line)
+                if("End of /NAMES list" in line):
+                    Loading = False
+                    print("Passed")
+        except TimeoutError:
+            print("Problem")
+    sendMessage(s, " HeyGuys HeyGuys HeyGuys HeyGuys ")
+    sendMessage(s, ENTRANCE)
+    print(IDENT + " has joined " + CHANNEL)
