@@ -86,14 +86,15 @@ while True:
                 sendMessage(s, "Voting is closed VoteNay VoteNay")
                 time.sleep(1)
 
-        elif "!stats" in message:
+        elif "!scores" in message:
             text = TeamA + ": " + str(ScoreA) + "  vs " + TeamB + ": " + str(ScoreB)
             print(text)
             sendMessage(s, text)
             time.sleep(1)
 
-        elif user in Chat_Masters:
-            if "!final results" in line:
+    # MOD SPECIFIC COMMANDS
+        elif user in Channel_Mods:
+            if "!endpoll" in line:
                 poll = "closed"
                 if ScoreA > ScoreB:
                     sendMessage(s, TeamA + " WON!! Poooound Poooound Poooound ")

@@ -14,7 +14,7 @@ CommandList = " MrDestructoid !dev for Bot info || !spellcast [Phrase] to transl
 
 
 # Editable Setting
-Chat_Masters = [os.getenv("TARGET_CHANNEL"), "LIST OF CHANNEL MODS"]
+Channel_Mods = [os.getenv("TARGET_CHANNEL"), "LIST OF CHANNEL MODS"]
 CHANNEL = os.getenv("TARGET_CHANNEL")
 SOCIAL = "SOCIAL MEDIA INFO"
 StreamName = ["LIST OF STREAM TITLES"]
