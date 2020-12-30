@@ -3,3 +3,4 @@ math
 datetime
 time
 dotenv
+spotipy
