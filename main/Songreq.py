@@ -10,8 +10,9 @@ load_dotenv()
 scope_queue = "streaming"
 scope_currPlaying = "user-read-currently-playing"
 
-# These are the SpotipyOAUTH object that will be used to manage authorization and make API calls
-sp_1 = SpotifyOAuth(
+# These are the SpotipyOAUTH object that will be used to manage authorization
+# and make API calls
+sp_currPlaying = SpotifyOAuth(
         client_id=os.getenv("SPOTIPY_CLIENT_ID"),
         client_secret=os.getenv("SPOTIPY_CLIENT_SECRET"),
         redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
@@ -20,17 +21,17 @@ sp_1 = SpotifyOAuth(
 
 
 def authorizeSongReq():
-    authCode = sp_1.get_authorization_code()
-    accessToken = sp_1.get_access_token(authCode, as_dict=False)
-    print(accessToken)
+    authCode_currplaying = sp_currPlaying.get_authorization_code()
+    sp_currPlaying.get_access_token(authCode_currplaying, as_dict=False)
 
 
-authorizeSongReq()
-
-songRequest = spotipy.Spotify(auth_manager=sp_1)
-
-trackData = songRequest.currently_playing(market="US")
-trackName = trackData['item']['name']
-artistName = trackData['item']['artists'][0]['name']
-print("Song: {}".format(trackName))
-print("Artist(s): {}".format(artistName))
+# Get currently playing track of stream
+def getCurPlaying():
+    songRequest_currPlaying = spotipy.Spotify(auth_manager=sp_currPlaying)
+    trackData = songRequest_currPlaying.currently_playing(market="US")
+    if (trackData is not None):
+        trackName = trackData['item']['name']
+        artistName = trackData['item']['artists'][0]['name']
+        return("Song: {} || Artist(s): {}".format(trackName, artistName))
+    else:
+        return("Please try again later ThankEgg")

@@ -6,6 +6,7 @@ from Settings import *
 import time
 import sys
 import datetime
+from Songreq import getCurPlaying
 
 
 s = openSocket()
@@ -62,8 +63,10 @@ while True:
             sendMessage(s, "Follow us on Twitter " + SOCIAL)
             time.sleep(1)
 
-        # elif "!bot songreq" in message:
-            # sendMessage(s, "Currently unavailable")
+        elif "!nowplaying" in message:
+            songinfo = getCurPlaying()
+            sendMessage(s, songinfo)
+            time.sleep(1)
 
         elif ("!vote" in line):
             if (poll == "open"):

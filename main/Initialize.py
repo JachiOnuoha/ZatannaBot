@@ -3,9 +3,11 @@ import string
 from Socket import sendMessage
 from Settings import ENTRANCE, IDENT, CHANNEL
 import sys
+from Songreq import authorizeSongReq
 
 
 def joinRoom(s):
+    # Connect to Twitch IRC
     readbuffer_join = ""
     Loading = True
     while Loading:
@@ -24,3 +26,6 @@ def joinRoom(s):
     sendMessage(s, " HeyGuys HeyGuys HeyGuys HeyGuys ")
     sendMessage(s, ENTRANCE)
     print(IDENT + " has joined " + CHANNEL)
+
+    # Initializa song request features
+    authorizeSongReq()
