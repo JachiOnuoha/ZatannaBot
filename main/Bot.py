@@ -3,15 +3,20 @@ from Commands import getUser, getMessage, spellcast, boo, uptime
 from Socket import openSocket, sendMessage
 from Initialize import joinRoom
 from Settings import *
-import time
+import time, threading
 import sys
 import datetime
 from Songreq import getCurPlaying
 
-
+# Open the connection socket
 s = openSocket()
+
+# Run initiliazation function to connect to the Twitch IRC and SongRequest endpoint
 joinRoom(s)
+
+# Store the stream start time
 begin = datetime.datetime.now()
+
 readbuffer_join = ""
 poll = "open"
 while True:
@@ -117,7 +122,8 @@ while True:
                 sendMessage(s, "WE'RE BACK PEOPLE!! KAPOW KAPOW")
 
             elif "!endstream" in line:
-                time.sleep(2)
+                # refresh_event.set()
+                time.sleep(1)
                 sendMessage(s, FARWELL)
                 print("Bot effectively closed")
                 sys.exit()

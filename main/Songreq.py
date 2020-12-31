@@ -2,6 +2,9 @@
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
+# Threading imports
+import threading
+
 # Access to environment variables
 from dotenv import load_dotenv
 import os
@@ -19,7 +22,22 @@ sp_currPlaying = SpotifyOAuth(
         state="code",
         scope=scope_currPlaying)
 
+# UNDER DEVELOPMENT
 
+# # Create refresh thread
+# refresh_event = threading.Event()
+
+
+# # Refresh OAuth token
+# def refreshAuthToken():
+#     print("Token has been refreshed")
+
+#     if(refresh_event.is_set()):
+#         print("Thread terminated properly")
+#         return
+
+
+# Get authorization code and access code for SongRequest
 def authorizeSongReq():
     authCode_currplaying = sp_currPlaying.get_authorization_code()
     sp_currPlaying.get_access_token(authCode_currplaying, as_dict=False)
