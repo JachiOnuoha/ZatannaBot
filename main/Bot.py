@@ -6,7 +6,7 @@ from Settings import *
 import time
 import sys
 import datetime
-from Songreq import getCurPlaying
+from Songreq import getCurrPlaying, nextTrack, prevTrack
 
 # Open the connection socket
 s = openSocket()
@@ -43,36 +43,45 @@ while True:
             sendMessage(s, "Lightning")
             break
 
+        # Get developer info
         if "!dev" in message:
             sendMessage(s, COMPANYINFO)
             time.sleep(1)
 
+        # Get info of bot commands
         elif "!assist" in message:
             sendMessage(s, CommandList)
             time.sleep(1)
 
-        # elif "!bot uptime" in message:
-            # sendMessage(s, "currently unavailable")
+        # Get bot uptime
+        elif "!uptime" in line:
+            myTime = uptime(begin)
+            sendMessage(s,  'DrinkPurple ' + myTime + ' DrinkPurple')
 
+        # Reverse any text
         elif "!spellcast" in message:
             text = spellcast(message)
             sendMessage(s, " LUL LUL LUL " + text)
             time.sleep(1)
 
+        # Boo any character or user
         elif "!boo" in message:
             text = boo(message)
             sendMessage(s, " UnSane UnSane " + text)
             time.sleep(1)
 
+        # Get Streamers Social info
         elif "!social" in message:
             sendMessage(s, "Follow us on Twitter " + SOCIAL)
             time.sleep(1)
 
+        # Get streamer's currently playing track
         elif "!nowplaying" in message:
-            songinfo = getCurPlaying()
+            songinfo = getCurrPlaying()
             sendMessage(s, songinfo)
             time.sleep(1)
 
+        # Cast vote in polls
         elif ("!vote" in line):
             if (poll == "open"):
                 if (tagA in line) or (TeamA in line):
@@ -94,6 +103,7 @@ while True:
                 sendMessage(s, "Voting is closed VoteNay VoteNay")
                 time.sleep(1)
 
+        # Get scores of on-going poll
         elif "!scores" in message:
             text = TeamA + ": " + str(ScoreA) + "  vs " + TeamB + ": " + str(ScoreB)
             print(text)
@@ -101,6 +111,8 @@ while True:
             time.sleep(1)
 
     # MOD SPECIFIC COMMANDS
+
+        # End on-going polls
         elif user in Channel_Mods:
             if "!endpoll" in line:
                 poll = "closed"
@@ -111,22 +123,28 @@ while True:
 
                 else:
                     sendMessage(s, "IT'S A TIE PogChamp PogChamp PogChamp")
+            
+            # Play next track in queue
+            elif "!next" in line:
+                nextTrack()
+                time.sleep(1)
 
-            # elif "!purge" in line:
-                # refreshChat(s)
+            # Play previous track in queue
+            elif "!prev" in line:
+                prevTrack()
+                time.sleep(1)
 
+            # For momentary breaks in stream
             elif "!breaktime" in line:
                 sendMessage(s, "We'll be back shortly imGlitch imGlitch imGlitch ")
 
+            # For end of momemtary breaks
             elif "!relive" in line:
                 sendMessage(s, "WE'RE BACK PEOPLE!! KAPOW KAPOW")
 
+            # Deactivate bot
             elif "!endstream" in line:
                 time.sleep(1)
                 sendMessage(s, FARWELL)
                 print("Bot effectively closed")
                 sys.exit()
-
-            elif "!uptime" in line:
-                myTime = uptime(begin)
-                sendMessage(s,  'DrinkPurple ' + myTime + ' DrinkPurple')
