@@ -3,7 +3,7 @@ from Commands import getUser, getMessage, spellcast, boo, uptime
 from Socket import openSocket, sendMessage
 from Initialize import joinRoom
 from Settings import *
-import time, threading
+import time
 import sys
 import datetime
 from Songreq import getCurPlaying
@@ -122,7 +122,6 @@ while True:
                 sendMessage(s, "WE'RE BACK PEOPLE!! KAPOW KAPOW")
 
             elif "!endstream" in line:
-                # refresh_event.set()
                 time.sleep(1)
                 sendMessage(s, FARWELL)
                 print("Bot effectively closed")
