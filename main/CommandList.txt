@@ -1,0 +1,1 @@
+MrDestructoid !dev for Bot info || !spellcast [Phrase] to translate phrase into a Zatanna-like spell || !vote [Name] to vote for daily Team battles || !scores to check Team Battle scores || !votehelp for voting info || !boo [Name] to disrespect || !social for social media info || !uptime for Stream uptime, !nowplaying for current song name

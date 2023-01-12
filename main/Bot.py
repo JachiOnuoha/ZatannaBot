@@ -50,24 +50,27 @@ while True:
 
         # Get info of bot commands
         elif "!assist" in message:
-            sendMessage(s, CommandList)
+            with open('CommandList.txt', 'r') as file:
+                CommandList = file.readlines()
+            CommandListStr = ' '.join([str(elem) for elem in CommandList])
+            sendMessage(s, CommandListStr)
             time.sleep(1)
 
         # Get bot uptime
         elif "!uptime" in line:
             myTime = uptime(begin)
-            sendMessage(s,  'DrinkPurple ' + myTime + ' DrinkPurple')
+            sendMessage(s,  " bleedPurple " + myTime)
 
         # Reverse any text
         elif "!spellcast" in message:
             text = spellcast(message)
-            sendMessage(s, " LUL LUL LUL " + text)
+            sendMessage(s, " LUL " + text)
             time.sleep(1)
 
         # Boo any character or user
         elif "!boo" in message:
             text = boo(message)
-            sendMessage(s, " UnSane UnSane " + text)
+            sendMessage(s, " UnSane " + text)
             time.sleep(1)
 
         # Get Streamers Social info
@@ -86,21 +89,21 @@ while True:
             if (poll == "open"):
                 if (tagA in line) or (TeamA in line):
                     ScoreA += 1
-                    sendMessage(s, " CurseLit CurseLit " + user + " voted for " + TeamA)
+                    sendMessage(s, " CurseLit " + user + " voted for " + TeamA)
                     time.sleep(1)
                 elif (tagB in line) or (TeamB in line):
                     ScoreB += 1
-                    sendMessage(s, " TwitchLit TwitchLit " + user + " voted for " + TeamB)
+                    sendMessage(s, " TwitchLit " + user + " voted for " + TeamB)
                     time.sleep(1)
                 elif "help" in line:
                     text = " CurseLit TwitchLit Use " + tagA + " to vote for " + TeamA + " and " + tagB + " to vote for " + TeamB
                     sendMessage(s, text)
                     time.sleep(1)
                 else:
-                    sendMessage(s, "Incorrect Command BibleThump BibleThump ")
+                    sendMessage(s, " BibleThump Incorrect Command")
                     time.sleep(1)
             else:
-                sendMessage(s, "Voting is closed VoteNay VoteNay")
+                sendMessage(s, " VoteNay Voting is closed")
                 time.sleep(1)
 
         # Get scores of on-going poll
@@ -117,12 +120,12 @@ while True:
             if "!endpoll" in line:
                 poll = "closed"
                 if ScoreA > ScoreB:
-                    sendMessage(s, TeamA + " WON!! Poooound Poooound Poooound ")
+                    sendMessage(s, " Poooound " + TeamA + " WON!! ")
                 elif ScoreB > ScoreA:
-                    sendMessage(s, TeamB + " WON!!! Poooound Poooound Poooound ")
+                    sendMessage(s, " Poooound " + TeamB + " WON!! ")
 
                 else:
-                    sendMessage(s, "IT'S A TIE PogChamp PogChamp PogChamp")
+                    sendMessage(s, " PogChamp IT'S A TIE")
             
             # Play next track in queue
             elif "!next" in line:
@@ -136,11 +139,11 @@ while True:
 
             # For momentary breaks in stream
             elif "!breaktime" in line:
-                sendMessage(s, "We'll be back shortly imGlitch imGlitch imGlitch ")
+                sendMessage(s, " HeyGuys We'll be back shortly")
 
             # For end of momemtary breaks
             elif "!relive" in line:
-                sendMessage(s, "WE'RE BACK PEOPLE!! KAPOW KAPOW")
+                sendMessage(s, " KAPOW WE'RE BACK PEOPLE!!")
 
             # Deactivate bot
             elif "!endstream" in line:

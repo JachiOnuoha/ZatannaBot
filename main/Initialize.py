@@ -23,8 +23,7 @@ def joinRoom(s):
                     print("Passed")
         except TimeoutError:
             print("Problem")
-    sendMessage(s, " HeyGuys HeyGuys HeyGuys HeyGuys ")
-    sendMessage(s, ENTRANCE)
+    sendMessage(s, " imGlitch " + ENTRANCE)
     print(IDENT + " has joined " + CHANNEL)
 
     # Initializa song request features
