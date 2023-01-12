@@ -39,11 +39,13 @@ def getCurrPlaying():
 
 # Play next track in the queue
 def nextTrack():
+    # TODO: Handle exception
     songRequest_songReq = spotipy.Spotify(auth_manager=sp_songReq)
     songRequest_songReq.next_track()
 
 
 # Play previous track in the queue
 def prevTrack():
+    # TODO: Handle exception
     songRequest_songReq = spotipy.Spotify(auth_manager=sp_songReq)
     songRequest_songReq.previous_track()
